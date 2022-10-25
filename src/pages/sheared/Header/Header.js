@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Link } from 'react-router-dom';
 import  header_logo  from '../../../ass/header_logo.png'
 import DarkModeToggle from "react-dark-mode-toggle";
-import userProfile from '../../../ass/user.jpg'
+// import userProfile from '../../../ass/user.jpg'
 
 const Header = () => {
     const [isDarkMode, setIsDarkMode] = useState(() => false);
