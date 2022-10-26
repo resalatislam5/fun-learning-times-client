@@ -2,10 +2,22 @@ import React, {useState} from "react";
 import { Link } from 'react-router-dom';
 import  header_logo  from '../../../ass/header_logo.png'
 import DarkModeToggle from "react-dark-mode-toggle";
-// import userProfile from '../../../ass/user.jpg'
+import userProfile from '../../../ass/user.jpg'
+import { useContext } from "react";
+import { AuthProviderContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
     const [isDarkMode, setIsDarkMode] = useState(() => false);
+    const {user,logOut} = useContext(AuthProviderContext);
+    const handleSignOut = () =>{
+        logOut()
+        .then(() => {
+            
+          }).catch((error) => {
+            
+          });
+          
+    }
     return (
         <div>
             <div className="navbar bg-base-100 py-4 shadow-lg mt-2 px-5 rounded-lg">
@@ -39,10 +51,8 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link to='/login' className="btn btn-error text-white  mr-2">Login</Link>
-                    <Link to='/signup' className="btn btn-error text-white lg:mr-5 ">sign up</Link>
-                    {/* {
-                        user && user?.uid ?
+                    {
+                        !user && user?.uid ?
                         <>
                         <Link to='/login' className="btn btn-error text-white  mr-2">Login</Link>
                         <Link to='/signup' className="btn btn-error text-white lg:mr-5 ">sign up</Link>
@@ -50,16 +60,16 @@ const Header = () => {
                         <>
                             <div className="w-10 rounded-full mr-5">
                             {
-                                user && user.displayName ?
-                                // <img src={displayName} alt="Profile" />
+                                user && user?.displayName ?
+                                <img src={user?.photoURL} alt={user?.displayName} title={user?.displayName} />
                                 :
                                 <img src={userProfile} alt="Profile" />
 
                             }
                             </div>                            
-                            <button className="btn btn-error text-white lg:mr-5 ">sign Out</button>
+                            <button onClick={handleSignOut} className="btn btn-error text-white lg:mr-5 ">sign Out</button>
                         </>
-                    } */}
+                    }
                     <DarkModeToggle className="hidden lg:visible"
                         onChange={setIsDarkMode}
                         checked={isDarkMode}
