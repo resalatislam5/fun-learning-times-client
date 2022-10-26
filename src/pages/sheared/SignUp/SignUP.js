@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle,FaGithub } from "react-icons/fa";
 import { useContext } from 'react';
 import { AuthProviderContext } from '../../../contexts/AuthProvider/AuthProvider';
@@ -9,11 +9,13 @@ const SignUP = () => {
     const {loginPopup,passwordSignUp,updateUserProfile} = useContext(AuthProviderContext)
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const location = useLocation()
+    const from = location?.state?.from?.pathname || '/'
     const handleGoogle = () =>{
         loginPopup(googleProvider)
         .then((result) => {
-            navigate('/')
+            navigate(from, {replace:true})
           })
           .catch((error) => {
             const errorMessage = error.message;
@@ -23,7 +25,7 @@ const SignUP = () => {
     const handleGithub = () =>{
         loginPopup(githubProvider)
         .then((result) => {
-            navigate('/')
+            navigate(from, {replace:true})
           })
           .catch((error) => {
             const errorMessage = error.message;
@@ -39,6 +41,7 @@ const SignUP = () => {
         const password = form.password.value;
         passwordSignUp(email, password)
         .then(result =>{
+            navigate(from, {replace:true})
             updateUserProfile(name,photoURL)
             .then(() => {
 

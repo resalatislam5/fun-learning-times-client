@@ -71,7 +71,7 @@ const Header = () => {
                         <Link to='/signup' className="btn btn-error text-white lg:mr-5 ">sign up</Link>
                         </>
                     }
-                    <DarkModeToggle className="hidden lg:visible"
+                    <DarkModeToggle className="hidden md:block "
                         onChange={setIsDarkMode}
                         checked={isDarkMode}
                         size={80}
