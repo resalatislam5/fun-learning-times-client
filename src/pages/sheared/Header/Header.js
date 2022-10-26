@@ -12,7 +12,7 @@ const Header = () => {
     const handleSignOut = () =>{
         logOut()
         .then(() => {
-            
+            // Sign-out successful.
           }).catch((error) => {
             
           });
@@ -52,22 +52,23 @@ const Header = () => {
                 </div>
                 <div className="navbar-end">
                     {
-                        !user && user?.uid ?
-                        <>
-                        <Link to='/login' className="btn btn-error text-white  mr-2">Login</Link>
-                        <Link to='/signup' className="btn btn-error text-white lg:mr-5 ">sign up</Link>
-                        </>:
+                        user && user?.uid ?
                         <>
                             <div className="w-10 rounded-full mr-5">
                             {
                                 user && user?.displayName ?
-                                <img src={user?.photoURL} alt={user?.displayName} title={user?.displayName} />
+                                <img className="rounded-full" src={user?.photoURL} alt={user?.displayName} title={user?.displayName} />
                                 :
                                 <img src={userProfile} alt="Profile" />
 
                             }
                             </div>                            
                             <button onClick={handleSignOut} className="btn btn-error text-white lg:mr-5 ">sign Out</button>
+                        </>
+                        :
+                        <>
+                        <Link to='/login' className="btn btn-error text-white  mr-2">Login</Link>
+                        <Link to='/signup' className="btn btn-error text-white lg:mr-5 ">sign up</Link>
                         </>
                     }
                     <DarkModeToggle className="hidden lg:visible"
