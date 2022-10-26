@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { HiArrowSmRight } from "react-icons/hi";
 const Card = ({category}) => {
     const {img,name, title,id} = category;
-    console.log(category)
     return (
         <div>
             <div className="card w-96 bg-base-100 shadow-xl">
@@ -12,7 +11,7 @@ const Card = ({category}) => {
                     <h2 className="card-title">Name: {name}</h2>
                     <p>Course: {title.length < 30 ? title : title.slice(0,30) + '...'}</p>
                     <div className="card-actions justify-end">
-                    <Link to={`/course/${id}`}><button className="btn btn-primary">More Details</button></Link>
+                    <Link to={`/course/${id}`}><button className="btn bg-yellow-500 border-0 hover:bg-yellow-600">More Details <HiArrowSmRight className='ml-1 text-xl' /></button></Link>
                     </div>
                 </div>
             </div>
