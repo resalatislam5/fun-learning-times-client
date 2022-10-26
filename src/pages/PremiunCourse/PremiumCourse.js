@@ -6,7 +6,7 @@ const PremiumCourse = () => {
     const {img,title,body} = course
     return (
         <div>
-         <div className='w-[570px] mx-auto my-10'>
+         <div className='ld:w-[570px] w-80 md:w-96 mx-auto my-10'>
             <div className='flex justify-center'>
             <img  src={img} alt="" />
             </div>
