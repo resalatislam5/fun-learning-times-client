@@ -13,6 +13,7 @@ const Login = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const from = location?.state?.from?.pathname || '/'
+    // googleLogin
     const handleGoogle = () =>{
         loginPopup(googleProvider)
         .then((result) => {
@@ -24,6 +25,7 @@ const Login = () => {
             setErr(errorMessage)
           });
     }
+    //Github Login
     const handleGithub = () =>{
         loginPopup(githubProvider)
         .then((result) => {
@@ -35,6 +37,7 @@ const Login = () => {
             setErr(errorMessage)
           });
     }
+    //Email Login
     const handleLogin = e =>{
         e.preventDefault();
         const form = e.target;

@@ -5,6 +5,7 @@ import Course from "../pages/Course/Course";
 import Courses from "../pages/Courses/Courses/Courses";
 import Faq from "../pages/Faq/Faq";
 import Home from "../pages/Home/Home";
+import NotFound from "../pages/NotFound/NotFound";
 import PremiumCourse from "../pages/PremiunCourse/PremiumCourse";
 import Login from "../pages/sheared/Login/Login";
 import SignUP from "../pages/sheared/SignUp/SignUP";
@@ -54,6 +55,10 @@ export const routes = createBrowserRouter([
         {
             path:'/signup',
             element:<SignUP />
+        },
+        {
+            path:'*',
+            element:<NotFound />
         }
     ]
 }

@@ -14,6 +14,7 @@ const SignUP = () => {
     const navigate = useNavigate();
     const location = useLocation()
     const from = location?.state?.from?.pathname || '/'
+    //Google Login
     const handleGoogle = () =>{
         loginPopup(googleProvider)
         .then((result) => {
@@ -25,6 +26,7 @@ const SignUP = () => {
             setErr(errorMessage)
           });
     }
+    //Github login
     const handleGithub = () =>{
         loginPopup(githubProvider)
         .then((result) => {
@@ -36,6 +38,7 @@ const SignUP = () => {
             setErr(errorMessage)
           });
     }
+    //Email SignUP
     const handleSignUp = e =>{
         e.preventDefault();
         const form = e.target;
@@ -47,6 +50,7 @@ const SignUP = () => {
         .then(result =>{
             toast.success('Successfully Login')
             navigate(from, {replace:true})
+            //Name and img update
             updateUserProfile(name,photoURL)
             .then(() => {
 
