@@ -3,6 +3,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle,FaGithub } from "react-icons/fa";
 import { AuthProviderContext } from '../../../contexts/AuthProvider/AuthProvider';
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import toast, { Toaster } from 'react-hot-toast';
+
 const Login = () => {
     const [err, setErr] = useState();
     const {loginPopup,passwordLogin} = useContext(AuthProviderContext)
@@ -14,8 +16,7 @@ const Login = () => {
     const handleGoogle = () =>{
         loginPopup(googleProvider)
         .then((result) => {
-            const user = result.user;
-            console.log(user)
+            toast.success('Successfully Login')
             navigate(from, {replace:true})
           })
           .catch((error) => {
@@ -26,6 +27,7 @@ const Login = () => {
     const handleGithub = () =>{
         loginPopup(githubProvider)
         .then((result) => {
+            toast.success('Successfully Login')
             navigate(from, {replace:true})
           })
           .catch((error) => {
@@ -40,6 +42,7 @@ const Login = () => {
         const password = form.password.value;
         passwordLogin(email, password)
         .then(result =>{
+            toast.success('Successfully Login')
             navigate(from, {replace:true})
             form.reset()
         })
@@ -50,6 +53,10 @@ const Login = () => {
     }
     return (
         <div className='font-serif lg:mt-[5%] mt-7'>
+            <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
             <div className='h-full'>
                 <div className='font-[500] flex flex-col items-center mb-5'>
                     <div className='flex flex-col justify-around'>

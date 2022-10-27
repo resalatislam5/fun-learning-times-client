@@ -4,6 +4,8 @@ import { FaGoogle,FaGithub } from "react-icons/fa";
 import { useContext } from 'react';
 import { AuthProviderContext } from '../../../contexts/AuthProvider/AuthProvider';
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import toast, { Toaster } from 'react-hot-toast';
+
 const SignUP = () => {
     const [err, setErr] = useState();
     const {loginPopup,passwordSignUp,updateUserProfile} = useContext(AuthProviderContext)
@@ -15,6 +17,7 @@ const SignUP = () => {
     const handleGoogle = () =>{
         loginPopup(googleProvider)
         .then((result) => {
+            toast.success('Successfully SignUP')
             navigate(from, {replace:true})
           })
           .catch((error) => {
@@ -25,6 +28,7 @@ const SignUP = () => {
     const handleGithub = () =>{
         loginPopup(githubProvider)
         .then((result) => {
+            toast.success('Successfully Login')
             navigate(from, {replace:true})
           })
           .catch((error) => {
@@ -41,6 +45,7 @@ const SignUP = () => {
         const password = form.password.value;
         passwordSignUp(email, password)
         .then(result =>{
+            toast.success('Successfully Login')
             navigate(from, {replace:true})
             updateUserProfile(name,photoURL)
             .then(() => {
@@ -48,7 +53,6 @@ const SignUP = () => {
               }).catch((error) => {
                 setErr(error)
               });
-            console.log(result.user)
             form.reset()
         })
         .catch((error) => {
@@ -58,6 +62,10 @@ const SignUP = () => {
     }
     return (
         <div>
+                <Toaster
+                position="top-center"
+                reverseOrder={false}
+                />
             <div className='font-serif lg:mt-[2%] mt-5'>
             <div className='h-full'>
                 <div className='font-[500] flex flex-col items-center mb-2'>
