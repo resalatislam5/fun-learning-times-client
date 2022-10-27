@@ -8,7 +8,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const SignUP = () => {
     const [err, setErr] = useState();
-    const {loginPopup,passwordSignUp,updateUserProfile} = useContext(AuthProviderContext)
+    const {loginPopup,passwordSignUp,updateUserProfile,sendEmail} = useContext(AuthProviderContext)
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
     const navigate = useNavigate();
@@ -49,14 +49,18 @@ const SignUP = () => {
         passwordSignUp(email, password)
         .then(result =>{
             toast.success('Successfully Login')
-            navigate(from, {replace:true})
+            sendEmail()
+            .then(() => {
+              toast.success('Cheak Your Email ')
+            });
             //Name and img update
             updateUserProfile(name,photoURL)
             .then(() => {
-
+              console.log('update')
               }).catch((error) => {
                 setErr(error)
               });
+              navigate(from, {replace:true})
             form.reset()
         })
         .catch((error) => {
